@@ -1,3 +1,3 @@
 # MD-Client-API-Example
 
-set control visibility from BPF stage change events
+Example on how to use the Client API to set control visibility from BPF stage change events
