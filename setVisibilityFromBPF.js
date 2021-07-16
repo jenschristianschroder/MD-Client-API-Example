@@ -4,46 +4,43 @@ function onLoad(executionContext) {
 }
 
 function onStageChange(executionContext) {
-    var formContext = executionContext.getFormContext();
+    var formContext = executionContext.getFormContext(); 
     var stage = formContext.data.process.getSelectedStage(); 
     var stageName = stage.getName();
+    var tabObj;
 
     formContext.ui.tabs.get("tab_Create").setVisible(false);
     formContext.ui.tabs.get("tab_Review").setVisible(false);
     formContext.ui.tabs.get("tab_Approve").setVisible(false);
     formContext.ui.tabs.get("tab_Active").setVisible(false);
 
-
     switch(stageName) {
         case "Create": {
-            formContext.ui.tabs.get("tab_Create").setVisible(true);
-            formContext.ui.tabs.get("tab_Create").setFocus();
+            tabObj = formContext.ui.tabs.get("tab_Create");
+
             if(formContext.getAttribute("createdon").getValue() != null) {
-                var tabObj = formContext.ui.tabs.get("tab_Create");
-                var sectionObj = tabObj.sections.get("tab_Create_section_Additional_Section");
-                sectionObj.setVisible(true);
+                tabObj.sections.get("tab_Create_section_Additional_Section").setVisible(true);
             }
             break;
         }
         case "Review": {
-            formContext.ui.tabs.get("tab_Review").setVisible(true);
-            formContext.ui.tabs.get("tab_Review").setFocus();
+            tabObj = formContext.ui.tabs.get("tab_Review");
             break;
         }
         case "Approve": {
-            formContext.ui.tabs.get("tab_Approve").setVisible(true);
-            formContext.ui.tabs.get("tab_Approve").setFocus();
+            tabObj = formContext.ui.tabs.get("tab_Approve");
             break;
         }
         case "Active": {
-            formContext.ui.tabs.get("tab_Active").setVisible(true);
-            formContext.ui.tabs.get("tab_Active").setFocus();
+            tabObj = formContext.ui.tabs.get("tab_Active");
             break;
         }
         default: {
-            formContext.ui.tabs.get("tab_Create").setVisible(true);
-            formContext.ui.tabs.get("tab_Create").setFocus();
+            tabObj = formContext.ui.tabs.get("tab_Create");
             break;
         }
+
     }
+    tabObj.setVisible(true);
+    tabObj.setFocus();
 }
